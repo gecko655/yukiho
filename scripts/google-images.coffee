@@ -35,7 +35,7 @@ module.exports = (robot) ->
 imageMe = (msg, query, animated, faces, cb) ->
   cb = animated if typeof animated == 'function'
   cb = faces if typeof faces == 'function'
-  q = key: 'key', cx: 'cx', num : 10, searchType: 'image', q: query, safe: 'medium', fileType: 'gif'
+  q = key: process.env.HUBOT_GOOGLE_SEARCH_KEY, cx: process.env.HUBOT_GOOGLE_SEARCH_CX , num : 10, searchType: 'image', q: query, safe: 'medium', fileType: 'gif'
   q.imgtype = 'animated' if typeof animated is 'boolean' and animated is true
   q.imgtype = 'face' if typeof faces is 'boolean' and faces is true
   msg.http('https://www.googleapis.com/customsearch/v1')
